@@ -40,7 +40,7 @@ class Area(str, Enum):
 
 
 class CharacterImage(BaseModel):
-    link: HttpUrl
+    link: str
 
     class Config:
         orm_mode = True
