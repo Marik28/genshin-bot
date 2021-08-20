@@ -1,0 +1,332 @@
+[
+  {
+    "rarity": 5,
+    "name": "Альбедо",
+    "element": "Гео",
+    "weapon": "Меч",
+    "sex": "Мужской",
+    "area": "Мондштадт",
+    "images": [
+      "https://static.zerochan.net/Albedo.%28Genshin.Impact%29.full.3180452.jpg"
+    ]
+  },
+  {
+    "rarity": 4,
+    "name": "Барбара",
+    "element": "Гидро",
+    "weapon": "Катализатор",
+    "sex": "Женский",
+    "area": "Мондштадт",
+    "images": [
+      "https://s1.zerochan.net/Barbara.%28Genshin.Impact%29.600.3159699.jpg"
+    ]
+  },
+  {
+    "rarity": 4,
+    "name": "Беннет",
+    "element": "Пиро",
+    "weapon": "Меч",
+    "sex": "Мужской",
+    "area": "Мондштадт",
+    "images": [
+      "https://static.zerochan.net/Bennett.%28Genshin.Impact%29.full.3174560.jpg"
+    ]
+  },
+  {
+    "rarity": 4,
+    "name": "Бэй Доу",
+    "element": "Электро",
+    "weapon": "Двуручный меч",
+    "sex": "Женский",
+    "area": "Ли Юэ",
+    "images": [
+      "https://s1.zerochan.net/Beidou.600.3220093.jpg"
+    ]
+  },
+  {
+    "rarity": 5,
+    "name": "Венти",
+    "element": "Анемо",
+    "weapon": "Лук",
+    "sex": "Мужской",
+    "area": "Мондштадт",
+    "images": [
+      "https://s1.zerochan.net/Venti.600.3190108.jpg"
+    ]
+  },
+  {
+    "rarity": 5,
+    "name": "Гань Юй",
+    "element": "Крио",
+    "weapon": "Лук",
+    "sex": "Женский",
+    "area": "Ли Юэ",
+    "images": [
+      "https://s1.zerochan.net/Ganyu.600.3218413.jpg"
+    ]
+  },
+  {
+    "rarity": 5,
+    "name": "Джинн",
+    "element": "Анемо",
+    "weapon": "Меч",
+    "sex": "Женский",
+    "area": "Мондштадт",
+    "images": [
+      "https://s1.zerochan.net/Jean.%28Genshin.Impact%29.600.3103751.jpg"
+    ]
+  },
+  {
+    "rarity": 5,
+    "name": "Дилюк",
+    "element": "Пиро",
+    "weapon": "Двуручный меч",
+    "sex": "Мужской",
+    "area": "Мондштадт",
+    "images": [
+      "https://static.zerochan.net/Diluc.full.3202967.png"
+    ]
+  },
+  {
+    "rarity": 4,
+    "name": "Диона",
+    "element": "Крио",
+    "weapon": "Лук",
+    "sex": "Женский",
+    "area": "Мондштадт",
+    "images": [
+      "https://s1.zerochan.net/Diona.600.3178092.jpg"
+    ]
+  },
+  {
+    "rarity": 5,
+    "name": "Кли",
+    "element": "Пиро",
+    "weapon": "Катализатор",
+    "sex": "Женский",
+    "area": "Мондштадт",
+    "images": [
+      "https://s1.zerochan.net/Klee.%28Genshin.Impact%29.600.3194173.jpg"
+    ]
+  },
+  {
+    "rarity": 5,
+    "name": "Кэ Цин",
+    "element": "Электро",
+    "weapon": "Меч",
+    "sex": "Женский",
+    "area": "Ли Юэ",
+    "images": [
+      "https://s1.zerochan.net/Genshin.Impact.600.3234385.jpg"
+    ]
+  },
+  {
+    "rarity": 4,
+    "name": "Кэйа",
+    "element": "Крио",
+    "weapon": "Меч",
+    "sex": "Мужской",
+    "area": "Мондштадт",
+    "images": [
+      "https://s1.zerochan.net/Kaeya.600.3232344.jpg"
+    ]
+  },
+  {
+    "rarity": 4,
+    "name": "Лиза",
+    "element": "Электро",
+    "weapon": "Катализатор",
+    "sex": "Женский",
+    "area": "Мондштадт",
+    "images": [
+      "https://s1.zerochan.net/Lisa.%28Genshin.Impact%29.600.3158990.jpg"
+    ]
+  },
+  {
+    "rarity": 5,
+    "name": "Мона",
+    "element": "Гидро",
+    "weapon": "Катализатор",
+    "sex": "Женский",
+    "area": "Мондштадт",
+    "images": [
+      "https://s1.zerochan.net/Mona.%28Genshin.Impact%29.600.3233243.jpg"
+    ]
+  },
+  {
+    "rarity": 4,
+    "name": "Нин Гуан",
+    "element": "Гео",
+    "weapon": "Катализатор",
+    "sex": "Женский",
+    "area": "Ли Юэ",
+    "images": [
+      "https://s1.zerochan.net/Ningguang.600.3198481.jpg"
+    ]
+  },
+  {
+    "rarity": 4,
+    "name": "Ноэлль",
+    "element": "Гео",
+    "weapon": "Двуручный меч",
+    "sex": "Женский",
+    "area": "Мондштадт",
+    "images": [
+      "https://s1.zerochan.net/Noelle.%28Genshin.Impact%29.600.3201648.jpg"
+    ]
+  },
+  {
+    "rarity": 4,
+    "name": "Рэйзор",
+    "element": "Электро",
+    "weapon": "Двуручный меч",
+    "sex": "Мужской",
+    "area": "Мондштадт",
+    "images": [
+      "https://s1.zerochan.net/Razor.%28Genshin.Impact%29.600.3133018.jpg"
+    ]
+  },
+  {
+    "rarity": 4,
+    "name": "Сахароза",
+    "element": "Анемо",
+    "weapon": "Катализатор",
+    "sex": "Женский",
+    "area": "Мондштадт",
+    "images": [
+      "https://s1.zerochan.net/Sucrose.600.3192679.jpg"
+    ]
+  },
+  {
+    "rarity": 4,
+    "name": "Син Цю",
+    "element": "Гидро",
+    "weapon": "Меч",
+    "sex": "Мужской",
+    "area": "Ли Юэ",
+    "images": [
+      "https://s1.zerochan.net/Xingqiu.600.3202052.jpg"
+    ]
+  },
+  {
+    "rarity": 4,
+    "name": "Синь Янь",
+    "element": "Пиро",
+    "weapon": "Двуручный меч",
+    "sex": "Женский",
+    "area": "Ли Юэ",
+    "images": [
+      "https://s1.zerochan.net/Xinyan.600.3208855.jpg"
+    ]
+  },
+  {
+    "rarity": 4,
+    "name": "Сян Лин",
+    "element": "Пиро",
+    "weapon": "Копьё",
+    "sex": "Женский",
+    "area": "Ли Юэ",
+    "images": [
+      "https://static.zerochan.net/Xiangling.full.3103591.jpg"
+    ]
+  },
+  {
+    "rarity": 5,
+    "name": "Сяо",
+    "element": "Анемо",
+    "weapon": "Копьё",
+    "sex": "Мужской",
+    "area": "Ли Юэ",
+    "images": [
+      "https://s1.zerochan.net/Xiao.%28Genshin.Impact%29.600.3233955.jpg"
+    ]
+  },
+  {
+    "rarity": 5,
+    "name": "Тарталья",
+    "element": "Гидро",
+    "weapon": "Лук",
+    "sex": "Мужской",
+    "area": "Снежная",
+    "images": [
+      "https://static.zerochan.net/Tartaglia.full.3217665.jpg"
+    ]
+  },
+  {
+    "rarity": 4,
+    "name": "Фишль",
+    "element": "Электро",
+    "weapon": "Лук",
+    "sex": "Женский",
+    "area": "Мондштадт",
+    "images": [
+      "https://s1.zerochan.net/Fischl.600.3154768.jpg"
+    ]
+  },
+  {
+    "rarity": 5,
+    "name": "Ци Ци",
+    "element": "Крио",
+    "weapon": "Меч",
+    "sex": "Женский",
+    "area": "Ли Юэ",
+    "images": [
+      "https://s1.zerochan.net/Qiqi.600.3225824.jpg"
+    ]
+  },
+  {
+    "rarity": 5,
+    "name": "Чжун Ли",
+    "element": "Гео",
+    "weapon": "Копьё",
+    "sex": "Мужской",
+    "area": "Ли Юэ",
+    "images": [
+      "https://static.zerochan.net/Zhongli.full.3218786.jpg"
+    ]
+  },
+  {
+    "rarity": 4,
+    "name": "Чун Юнь",
+    "element": "Крио",
+    "weapon": "Двуручный меч",
+    "sex": "Мужской",
+    "area": "Ли Юэ",
+    "images": [
+      "https://s1.zerochan.net/Chongyun.600.3179699.jpg"
+    ]
+  },
+  {
+    "rarity": 4,
+    "name": "Эмбер",
+    "element": "Пиро",
+    "weapon": "Лук",
+    "sex": "Женский",
+    "area": "Мондштадт",
+    "images": [
+      "https://s1.zerochan.net/Amber.%28Genshin.Impact%29.600.3111481.jpg"
+    ]
+  },
+  {
+    "rarity": 5,
+    "name": "Ху Тао",
+    "element": "Пиро",
+    "weapon": "Копьё",
+    "sex": "Женский",
+    "area": "Ли Юэ",
+    "images": [
+      "https://s1.zerochan.net/Hu.Tao.600.3232944.jpg"
+    ]
+  },
+  {
+    "rarity": 5,
+    "name": "Аяка",
+    "element": "Крио",
+    "weapon": "Меч",
+    "sex": "Женский",
+    "area": "Инадзума",
+    "images": [
+      "https://static.zerochan.net/Ayaka.%28Genshin.Impact%29.full.3197380.jpg"
+    ]
+  }
+]

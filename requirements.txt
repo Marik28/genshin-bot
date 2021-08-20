@@ -1,0 +1,9 @@
+discord.py
+discord-py-slash-command
+pydantic
+redis
+sqlalchemy
+pytest
+loguru
+bs4
+lxml
