@@ -11,9 +11,9 @@ class Settings(BaseSettings):
     redis_port: int = 6379
     redis_db: int = 1
 
-    database_url: str = "sqlite:////home/mark/PycharmProjects/genshin-bot/db.sqlite3"
+    database_url: str = "sqlite:///../db.sqlite3"
 
-    base_dir: Path = Path('/home/mark/PycharmProjects/genshin-bot/')
+    base_dir: Path = Path.cwd().parent
 
 
 settings = Settings()
