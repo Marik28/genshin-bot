@@ -21,7 +21,7 @@ def insert_data(filename):
         for c in characters:
             character_to_add = tables.Character(name=c.name, rarity=c.rarity, weapon=c.weapon, element=c.element,
                                                 sex=c.sex, area=c.area)
-            image = tables.CharacterImage(link=str(c.images[0]).strip())
+            image = tables.CharacterImage(link=str(c.images[0].link).strip())
             character_to_add.images.append(image)
             print(f"Добавляю {character_to_add.name}")
             session.add(character_to_add)
