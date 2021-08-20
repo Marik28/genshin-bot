@@ -37,11 +37,11 @@ async def process_roll_command(ctx: Context, banner_name: str = BannerList.DEFAU
     result = roller.roll()
 
     if result is None:
-        reply_message = f"{user.name} выбивает мусор 3 звезды"
+        reply_message = f"{user.name} выбивает мусор 3 звезды из баннера {banner_name}"
         embed = None
     else:
         reply_message = None
-        embed_service = CharacterEmbedService(user, result)
+        embed_service = CharacterEmbedService(user, result, banner_name)
         embed = embed_service.get_embed()
 
     await ctx.send(content=reply_message, embed=embed)
