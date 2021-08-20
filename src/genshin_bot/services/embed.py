@@ -41,7 +41,7 @@ class CharacterEmbedService(EmbedService):
         self.embed.title = f"Результат ролла баннера {self.banner} пользователем {self.user.name}"
         self.embed.add_field(name="Редкость", value=self.generate_rating(), inline=False)
         self.embed.add_field(name="Имя", value=f"{self.character.name} {self.get_element_emoji()}")
-        image = str(random.choice(self.character.images).link) if self.character.images else self.default_image
+        image = random.choice(self.character.images).link if self.character.images else self.default_image
         self.embed.set_image(url=image)
         self.embed.colour = self.get_rarity_color()
 
