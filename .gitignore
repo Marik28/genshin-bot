@@ -142,3 +142,4 @@ cython_debug/
 
 .idea/
 dump-*.sql
+data/
