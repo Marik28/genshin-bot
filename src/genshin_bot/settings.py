@@ -17,3 +17,6 @@ class Settings(BaseSettings):
 
 
 settings = Settings()
+
+if not settings.base_dir.exists():
+    settings.base_dir.mkdir()
