@@ -20,7 +20,7 @@ class StarRandomizer:
         raise NotImplementedError
 
 
-class WishCounter:
+class GuaranteeDropCounter:
     """Базовый класс счетчика молитв. Используется для ведения счета молитв, совершенных пользователем."""
 
     four_stars_drop_guarantee_rolls_amount: int = 10
@@ -69,13 +69,13 @@ class StarRoller:
     """Класс, реализующий логику выбивания редкости предмета с молитвы"""
 
     star_randomizer: StarRandomizer
-    wish_counter_cls: Type[WishCounter]
+    guarantee_drop_counter_cls: Type[GuaranteeDropCounter]
 
     def __init__(self, user: User):
         self.user = user
 
     def roll_star(self) -> Rarity:
         random_star = self.star_randomizer.roll_random_star()
-        wish_counter = self.wish_counter_cls(self.user, random_star)
-        rolled_star = wish_counter.get_star()
+        guarantee_drop_counter = self.guarantee_drop_counter_cls(self.user, random_star)
+        rolled_star = guarantee_drop_counter.get_star()
         return rolled_star

@@ -5,7 +5,7 @@ from typing import Optional, Type
 from discord import User
 from sqlalchemy import orm
 
-from .abc import StarRandomizer, WishCounter, CharacterPicker, StarRoller
+from .abc import StarRandomizer, GuaranteeDropCounter, CharacterPicker, StarRoller
 from .redis import redis
 from .. import tables
 from ..database import Session
@@ -66,7 +66,7 @@ class DefaultStarRandomizer(StarRandomizer):
         return result
 
 
-class RedisWishCounter(WishCounter):
+class RedisGuaranteeDropCounter(GuaranteeDropCounter):
     redis = redis
 
     def get_star(self) -> Rarity:
@@ -87,7 +87,7 @@ class RedisWishCounter(WishCounter):
 
 class DefaultStarRoller(StarRoller):
     star_randomizer: StarRandomizer = DefaultStarRandomizer()
-    wish_counter_cls = RedisWishCounter
+    guarantee_drop_counter_cls = RedisGuaranteeDropCounter
 
 
 class BaseCharacterWish:
