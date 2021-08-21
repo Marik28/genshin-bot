@@ -29,7 +29,6 @@ class GuaranteeDropCounter:
     def __init__(self, user: User, roll_star: Rarity):
         self.user = user
         self.roll_star = roll_star
-        self.calculate_guarantee()
 
     def calculate_guarantee(self):
         """Рассчитывает гарантии 4 и 5 звезды"""
@@ -80,5 +79,6 @@ class StarRoller:
     def roll_star(self) -> Rarity:
         random_star = self.star_randomizer.roll_random_star()
         guarantee_drop_counter = self.guarantee_drop_counter_cls(self.user, random_star)
+        guarantee_drop_counter.calculate_guarantee()
         rolled_star = guarantee_drop_counter.get_star()
         return rolled_star
