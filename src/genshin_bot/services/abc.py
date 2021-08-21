@@ -29,14 +29,17 @@ class GuaranteeDropCounter:
     def __init__(self, user: User, roll_star: Rarity):
         self.user = user
         self.roll_star = roll_star
+        self.calculate_guarantee()
 
-        if roll_star == Rarity.THREE:
+    def calculate_guarantee(self):
+        """Рассчитывает гарантии 4 и 5 звезды"""
+        if self.roll_star == Rarity.THREE:
             self.increment(Rarity.FOUR)
             self.increment(Rarity.FIVE)
-        elif roll_star == Rarity.FOUR:
+        elif self.roll_star == Rarity.FOUR:
             self.reset(Rarity.FOUR)
             self.increment(Rarity.FIVE)
-        elif roll_star == Rarity.FIVE:
+        elif self.roll_star == Rarity.FIVE:
             self.reset(Rarity.FIVE)
             self.reset(Rarity.FOUR)
 
