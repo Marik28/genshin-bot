@@ -82,3 +82,24 @@ class StarRoller:
         guarantee_drop_counter.calculate_guarantee()
         rolled_star = guarantee_drop_counter.get_star()
         return rolled_star
+
+
+class WishCounter:
+    """Счетчик количества молитв по редкостям и в общем для пользователя"""
+
+    def __init__(self, user: User, star: Rarity):
+        self.user = user
+        self.star = star
+
+    def increment(self) -> None:
+        """Увеличивает счетчик для выпавшей редкости и общий счетчик молитв"""
+        self.increment_dropped_star()
+        self.increment_total()
+
+    def increment_dropped_star(self) -> None:
+        """Увеличивает счетчик выпавших предметов с редкостью, которая передана в конструктор"""
+        raise NotImplementedError
+
+    def increment_total(self) -> None:
+        """Увеличивает общий счетчик роллов"""
+        raise NotImplementedError

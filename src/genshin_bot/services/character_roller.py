@@ -5,7 +5,7 @@ from typing import Optional, Type
 from discord import User
 from sqlalchemy import orm
 
-from .abc import StarRandomizer, GuaranteeDropCounter, CharacterPicker, StarRoller
+from .abc import StarRandomizer, GuaranteeDropCounter, CharacterPicker, StarRoller, WishCounter
 from .redis import redis
 from .. import tables
 from ..database import Session
@@ -90,9 +90,25 @@ class DefaultStarRoller(StarRoller):
     guarantee_drop_counter_cls = RedisGuaranteeDropCounter
 
 
+# todo протестировать
+class RedisWishCounter(WishCounter):
+    redis = redis
+
+    def get_variable_name(self, star: Optional[Rarity]):
+        star_bit = star.value if star is not None else "total"
+        return f"{self.user}_{star_bit}_wishes_rolled"
+
+    def increment_total(self) -> None:
+        self.redis.incr(self.get_variable_name(None))
+
+    def increment_dropped_star(self) -> None:
+        self.redis.incr(self.get_variable_name(self.star))
+
+
 class BaseCharacterWish:
     character_picker_cls: Type[CharacterPicker] = DefaultCharacterPicker
     star_roller_cls: Type[StarRoller] = DefaultStarRoller
+    wish_counter_cls: Type[WishCounter] = RedisWishCounter
 
     def __init__(self, user: User, banner_name: str):
         self.user = user
@@ -101,6 +117,8 @@ class BaseCharacterWish:
 
     def roll(self) -> Optional[Character]:
         star = self.star_roller.roll_star()
+        wish_counter = self.wish_counter_cls(self.user, star)
+        wish_counter.increment()
         return self.character_picker.pick(star)
 
 
