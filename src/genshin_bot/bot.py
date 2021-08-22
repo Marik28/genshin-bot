@@ -8,7 +8,8 @@ from loguru import logger
 from . import tables
 from .models.banners import BannerList
 from .services.character_roller import BaseCharacterWish
-from .services.embed import CharacterEmbedService, BannerInfoEmbedService
+from .services.embed import CharacterEmbedService, BannerInfoEmbedService, WishesInfoEmbedService
+from .services.wishes import WishesService
 from .settings import settings
 
 bot = commands.Bot(command_prefix=settings.command_prefix)
@@ -64,3 +65,16 @@ async def process_banner_info_command(ctx: Context, banner_name: str):
     service = BannerInfoEmbedService(banner_name)
     embed = service.get_embed()
     await ctx.send(embed=embed)
+
+
+@slash.slash(
+    name="rolls-info",
+    description="Посмотреть информацию о совершенных роллах",
+)
+async def process_rolls_info_command(ctx: Context):
+    user = ctx.message.author
+    service = WishesService()
+    wishes_info = service.get_rolls_info(user)
+    embed_service = WishesInfoEmbedService(user, wishes_info)
+    embed = embed_service.get_embed()
+    await ctx.send(str(wishes_info), embed=embed)
