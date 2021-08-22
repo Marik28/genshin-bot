@@ -1,8 +1,7 @@
 from discord import User
 from discord.ext import commands
 from discord.ext.commands import Context
-from discord_slash import SlashCommand
-from discord_slash.utils.manage_commands import create_option
+from discord_slash import SlashCommand, SlashContext
 from loguru import logger
 
 from . import tables
@@ -24,6 +23,11 @@ async def on_ready():
 @bot.event
 async def on_disconnect():
     logger.warning("Соединение с сервером потеряно")
+
+
+@bot.event
+async def on_command_error(ctx: Context, error):
+    logger.error(f"In {ctx.guild}/{ctx.channel} (message by {ctx.message.author}): {error}.")
 
 
 @bot.command(name="roll")
@@ -51,30 +55,18 @@ async def process_roll_command(ctx: Context, banner_name: str = BannerList.DEFAU
 @slash.slash(
     name="banner_info",
     description="Информация о баннере",
-    options=[
-        create_option(
-            name="banner_name",
-            description="Название баннера",
-            option_type=3,
-            required=True,
-            choices=[banner for banner in BannerList]
-        ),
-    ]
 )
-async def process_banner_info_command(ctx: Context, banner_name: str):
+async def process_banner_info_command(ctx: SlashContext, banner_name: str):
     service = BannerInfoEmbedService(banner_name)
     embed = service.get_embed()
     await ctx.send(embed=embed)
 
 
-@slash.slash(
-    name="rolls-info",
-    description="Посмотреть информацию о совершенных роллах",
-)
+@bot.command(name="rolls_info")
 async def process_rolls_info_command(ctx: Context):
     user = ctx.message.author
     service = WishesService()
     wishes_info = service.get_rolls_info(user)
     embed_service = WishesInfoEmbedService(user, wishes_info)
     embed = embed_service.get_embed()
-    await ctx.send(str(wishes_info), embed=embed)
+    await ctx.send(embed=embed)
