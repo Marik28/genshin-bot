@@ -90,19 +90,21 @@ class DefaultStarRoller(StarRoller):
     guarantee_drop_counter_cls = RedisGuaranteeDropCounter
 
 
+class GetRedisVariableNameMixin:
+    def get_variable_name(self, user: User, star: Optional[Rarity]):
+        star_bit = star.value if star is not None else "total"
+        return f"{user.id}_{star_bit}_wishes_rolled"
+
+
 # todo протестировать
-class RedisWishCounter(WishCounter):
+class RedisWishCounter(WishCounter, GetRedisVariableNameMixin):
     redis = redis
 
-    def get_variable_name(self, star: Optional[Rarity]):
-        star_bit = star.value if star is not None else "total"
-        return f"{self.user}_{star_bit}_wishes_rolled"
-
     def increment_total(self) -> None:
-        self.redis.incr(self.get_variable_name(None))
+        self.redis.incr(self.get_variable_name(self.user, None))
 
     def increment_dropped_star(self) -> None:
-        self.redis.incr(self.get_variable_name(self.star))
+        self.redis.incr(self.get_variable_name(self.user, self.star))
 
 
 class BaseCharacterWish:
