@@ -15,6 +15,7 @@ from .settings import settings
 
 bot = commands.Bot(command_prefix=settings.command_prefix)
 slash = SlashCommand(bot, sync_commands=True)
+logger.add(settings.base_dir / "logs.log", level="INFO", rotation="2 MB")
 
 
 @bot.event

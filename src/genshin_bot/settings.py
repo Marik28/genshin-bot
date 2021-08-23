@@ -1,5 +1,6 @@
 from pathlib import Path
 
+from loguru import logger
 from pydantic import BaseSettings
 
 
@@ -13,7 +14,7 @@ class Settings(BaseSettings):
 
     database_url: str = "sqlite:///../db.sqlite3"
 
-    base_dir: Path = Path(__file__).resolve().parent.parent
+    base_dir: Path = Path(__file__).resolve().parent.parent.parent
 
 
 settings = Settings()
