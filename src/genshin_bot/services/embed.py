@@ -3,9 +3,11 @@ from typing import Optional
 
 from discord import Embed, User
 
+from .commands import commands
 from .. import tables
 from ..database import Session
 from ..models.characters import Character, Element, Rarity
+from ..models.commands import CommandArgument, Command
 from ..models.wishes import WishesInfo
 
 
@@ -123,6 +125,34 @@ class WishesInfoEmbedService(EmbedService):
         else:
             percentage = value / total
         return f"{percentage:.2%}"
+
+    def get_embed(self) -> Embed:
+        return self.embed
+
+
+class CommandsInfoEmbedService(EmbedService):
+
+    def __init__(self):
+        self.embed = Embed()
+        self.commands = commands
+        self.add_commands_info()
+
+    def add_commands_info(self):
+        self.embed.title = "Информация о боте"
+        self.embed.description = "Бот-гача с аниме девочками. Список команд ниже"
+        for command in self.commands:
+            self.embed.add_field(name=command.name, value=self.get_command_description_template(command), inline=False)
+
+    def get_argument_template(self, argument: CommandArgument) -> str:
+        return f"{argument.name} - {argument.description}"
+
+    def get_command_description_template(self, command: Command) -> str:
+        msg = f"{command.description}."
+        if command.arguments is not None:
+            msg += " Аргументы: \n"
+            args_info = [self.get_argument_template(argument) for argument in command.arguments]
+            msg += '\n'.join(args_info)
+        return msg
 
     def get_embed(self) -> Embed:
         return self.embed

@@ -2,12 +2,14 @@ from discord import User
 from discord.ext import commands
 from discord.ext.commands import Context
 from discord_slash import SlashCommand, SlashContext
+from discord_slash.utils.manage_commands import create_option
 from loguru import logger
 
 from . import tables
 from .models.banners import BannerList
 from .services.character_roller import BaseCharacterWish
-from .services.embed import CharacterEmbedService, BannerInfoEmbedService, WishesInfoEmbedService
+from .services.embed import CharacterEmbedService, BannerInfoEmbedService, WishesInfoEmbedService, \
+    CommandsInfoEmbedService
 from .services.wishes import WishesService
 from .settings import settings
 
@@ -28,6 +30,16 @@ async def on_disconnect():
 @bot.event
 async def on_command_error(ctx: Context, error):
     logger.error(f"In {ctx.guild}/{ctx.channel} (message by {ctx.message.author}): {error}.")
+
+
+@slash.slash(
+    name="help",
+    description="Описание бота",
+)
+async def process_test_command(ctx: SlashContext):
+    service = CommandsInfoEmbedService()
+    embed = service.get_embed()
+    await ctx.send(embed=embed)
 
 
 @bot.command(name="roll")
@@ -55,18 +67,30 @@ async def process_roll_command(ctx: Context, banner_name: str = BannerList.DEFAU
 @slash.slash(
     name="banner_info",
     description="Информация о баннере",
+    options=[
+        create_option(
+            name="banner_name",
+            description="Название баннера",
+            option_type=3,
+            required=True,
+            choices=[banner for banner in BannerList]
+        ),
+    ]
 )
 async def process_banner_info_command(ctx: SlashContext, banner_name: str):
     service = BannerInfoEmbedService(banner_name)
     embed = service.get_embed()
-    await ctx.send(embed=embed)
+    await ctx.channel.send(embed=embed)
 
 
-@bot.command(name="rolls_info")
-async def process_rolls_info_command(ctx: Context):
-    user = ctx.message.author
+@slash.slash(
+    name="rolls_info",
+    description="Статистика по роллам",
+)
+async def process_rolls_info_command(ctx: SlashContext):
+    user = ctx.author
     service = WishesService()
     wishes_info = service.get_rolls_info(user)
     embed_service = WishesInfoEmbedService(user, wishes_info)
     embed = embed_service.get_embed()
-    await ctx.send(embed=embed)
+    await ctx.channel.send(embed=embed)
