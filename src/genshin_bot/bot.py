@@ -6,10 +6,12 @@ from discord_slash.utils.manage_commands import create_option
 from loguru import logger
 
 from . import tables
+from .embed.banners import BannerInfoEmbedService
+from .embed.characters import CharacterEmbedService
+from .embed.commands import CommandsInfoEmbedService
+from .embed.wishes import WishesInfoEmbedService
 from .models.banners import BannerList
 from .services.character_roller import BaseCharacterWish
-from .services.embed import CharacterEmbedService, BannerInfoEmbedService, WishesInfoEmbedService, \
-    CommandsInfoEmbedService
 from .services.wishes import WishesService
 from .settings import settings
 
