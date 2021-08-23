@@ -1,7 +1,7 @@
 from enum import Enum
 from enum import IntEnum
 
-from pydantic import BaseModel, HttpUrl
+from pydantic import BaseModel
 
 
 class Weapon(str, Enum):
