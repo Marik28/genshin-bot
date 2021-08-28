@@ -5,7 +5,7 @@ from .settings import settings
 
 engine = create_engine(
     settings.database_url,
-    connect_args={'check_same_thread': False},
+    connect_args={'check_same_thread': not ("sqlite" in settings.database_url)},
 )
 
 Session = sessionmaker(
