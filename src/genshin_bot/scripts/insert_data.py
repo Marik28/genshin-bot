@@ -9,7 +9,10 @@ from ..database import Session
 from ..settings import settings
 
 parser = argparse.ArgumentParser()
-parser.add_argument("file", help="Имя json файла со списком персонажей")
+parser.add_argument(
+    "file",
+    help="Имя json файла со списком персонажей. Файл должен лежать в папке data/json в корне проекта"
+)
 json_dir = settings.base_dir / "data" / "json"
 
 
