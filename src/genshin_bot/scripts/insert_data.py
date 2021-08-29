@@ -1,6 +1,7 @@
 import argparse
 import json
 
+from loguru import logger
 from sqlalchemy.exc import IntegrityError
 
 from .. import tables, models
@@ -22,6 +23,7 @@ def insert_data(filename):
             character_to_add = tables.Character(name=c.name, rarity=c.rarity, weapon=c.weapon, element=c.element,
                                                 sex=c.sex, area=c.area)
             image = tables.CharacterImage(link=str(c.images[0].link).strip())
+            logger.debug(f"{character_to_add.name} - {image}")
             character_to_add.images.append(image)
             print(f"Добавляю {character_to_add.name}")
             session.add(character_to_add)

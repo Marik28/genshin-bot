@@ -1,7 +1,7 @@
 from enum import Enum
 from enum import IntEnum
 
-from pydantic import BaseModel
+from pydantic import BaseModel, HttpUrl
 
 
 class Weapon(str, Enum):
@@ -40,7 +40,7 @@ class Area(str, Enum):
 
 
 class CharacterImage(BaseModel):
-    link: str
+    link: HttpUrl
 
     class Config:
         orm_mode = True
