@@ -16,6 +16,9 @@ class DjangoLikeModel:
     class DoesNotExist(Exception):
         pass
 
+    class AlreadyExists(Exception):
+        pass
+
 
 banner_and_character_association_table = Table(
     "banner_and_character_association", Base.metadata,
@@ -56,3 +59,8 @@ class Banner(Base, DjangoLikeModel):
         secondary=banner_and_character_association_table,
         backref="banners",
     )
+
+
+class User(Base, DjangoLikeModel):
+    __tablename__ = "users"
+    id = Column(Integer, primary_key=True)
