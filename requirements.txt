@@ -7,3 +7,4 @@ pytest
 loguru
 bs4
 lxml
+requests
