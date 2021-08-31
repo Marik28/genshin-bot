@@ -10,7 +10,7 @@ from ..settings import settings
 
 parser = argparse.ArgumentParser()
 parser.add_argument(
-    "file",
+    "filename",
     help="Имя json файла со списком персонажей. Файл должен лежать в папке data/json в корне проекта"
 )
 json_dir = settings.base_dir / "data" / "json"
@@ -39,5 +39,5 @@ def insert_data(filename):
 
 if __name__ == '__main__':
     args = parser.parse_args()
-    file = args.file
-    insert_data(file)
+    filename = args.filename
+    insert_data(filename)

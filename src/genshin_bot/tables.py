@@ -64,3 +64,10 @@ class Banner(Base, DjangoLikeModel):
 class User(Base, DjangoLikeModel):
     __tablename__ = "users"
     id = Column(Integer, primary_key=True)
+
+
+user_and_character_association_table = Table(
+    "user_and_character_association", Base.metadata,
+    Column('user_id', ForeignKey('users.id'), primary_key=True),
+    Column('character_id', ForeignKey('characters.id'), primary_key=True),
+)
