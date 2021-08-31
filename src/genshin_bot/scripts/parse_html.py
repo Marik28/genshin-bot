@@ -7,10 +7,7 @@ from bs4 import BeautifulSoup
 from ..settings import settings
 
 parser = argparse.ArgumentParser()
-parser.add_argument(
-    "filename",
-    help="Название файла с html, находящегося в папке data/html, который необходимо распарсить в json"
-)
+parser.add_argument("filename", help="Файл с html, который необходимо распарсить в json")
 
 html_dir = settings.base_dir / "data" / "html"
 json_dir = settings.base_dir / "data" / "json"
