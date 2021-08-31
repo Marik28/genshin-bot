@@ -3,6 +3,7 @@ discord-py-slash-command
 pydantic
 redis
 sqlalchemy
+sqlalchemy_utils
 pytest
 loguru
 bs4
