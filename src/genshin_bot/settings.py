@@ -1,5 +1,6 @@
 from pathlib import Path
 
+from loguru import logger
 from pydantic import BaseSettings
 
 
@@ -20,3 +21,5 @@ settings = Settings()
 
 if not settings.base_dir.exists():
     settings.base_dir.mkdir()
+
+logger.debug(f"Корень проекта - {settings.base_dir}")
