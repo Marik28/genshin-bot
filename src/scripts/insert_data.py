@@ -14,6 +14,8 @@ parser.add_argument(
     help="Имя json файла со списком персонажей. Файл должен лежать в папке data/json в корне проекта"
 )
 json_dir = settings.base_dir / "data" / "json"
+if not json_dir.exists():
+    json_dir.mkdir()
 
 
 def insert_data(filename):
@@ -28,12 +30,12 @@ def insert_data(filename):
             image = tables.CharacterImage(link=str(c.images[0].link).strip())
             logger.debug(f"{character_to_add.name} - {image}")
             character_to_add.images.append(image)
-            print(f"Добавляю {character_to_add.name}")
+            logger.info(f"Добавляю {character_to_add.name}")
             session.add(character_to_add)
             try:
                 session.commit()
             except IntegrityError:
-                print(f"{character_to_add.name} уже есть в БД")
+                logger.warning(f"{character_to_add.name} уже есть в БД")
                 session.rollback()
 
 

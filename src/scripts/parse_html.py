@@ -3,6 +3,7 @@ import json
 
 import requests
 from bs4 import BeautifulSoup
+from loguru import logger
 
 from genshin_bot.settings import settings
 
@@ -67,10 +68,10 @@ def parse_html_to_json(html_filename: str):
             ]
         }
         characters_list.append(character)
-        print(stars, name, gods_eye, weapon, sex, area)
+        logger.info(f"На очереди персонаж: {stars, name, gods_eye, weapon, sex, area}")
     json_file_name = html_filename.replace(".html", ".json")
     write_json(characters_list, json_file_name)
-    print(f"Сохранено в файле {json_file_name}")
+    logger.info(f"Сохранено в файле {json_dir / json_file_name}")
 
 
 if __name__ == '__main__':
