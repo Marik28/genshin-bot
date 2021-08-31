@@ -9,7 +9,7 @@ create-db:
 	cd src; python -m scripts.create_db
 
 drop-db:
-	rm db.sqlite3
+	cd src; python -m scripts.drop_db
 
 insert-data:
 	cd src; python -m scripts.insert_data $(file)
