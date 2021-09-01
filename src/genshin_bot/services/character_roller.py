@@ -28,9 +28,11 @@ class DefaultStarRandomizer(StarRandomizer):
     drop_chances = DefaultDropChances
 
     def __init__(self):
-        assert round(
-            self.drop_chances.five_stars.value + self.drop_chances.four_stars.value + self.drop_chances.three_stars.value,
-            4) == 1.0, "Суммарный шанс должен быть равен 1.0"
+        assert round((
+                self.drop_chances.five_stars.value +
+                self.drop_chances.four_stars.value +
+                self.drop_chances.three_stars.value
+        ), 4) == 1.0, "Суммарный шанс должен быть равен 1.0"
 
     def roll_random_star(self) -> Rarity:
         # todo подумать, как улучшить код
