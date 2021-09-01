@@ -274,6 +274,19 @@
   },
   {
     "rarity": 4,
+    "name": "Сара",
+    "element": "Электро",
+    "weapon": "Лук",
+    "sex": "Женский",
+    "area": "Инадзума",
+    "images": [
+      {
+        "link": "https://static.wikia.nocookie.net/genshin-impact/images/5/5b/%D0%9F%D0%B5%D1%80%D1%81%D0%BE%D0%BD%D0%B0%D0%B6_%D0%A1%D0%B0%D1%80%D0%B0_%D0%9A%D0%B0%D1%80%D1%82%D0%BE%D1%87%D0%BA%D0%B0.jpg/revision/latest/scale-to-width-down/281?cb=20210722153429&path-prefix=ru"
+      }
+    ]
+  },
+  {
+    "rarity": 4,
     "name": "Сахароза",
     "element": "Анемо",
     "weapon": "Катализатор",
@@ -347,6 +360,19 @@
     "images": [
       {
         "link": "https://static.wikia.nocookie.net/genshin-impact/images/8/88/Character_Xiao_Card.jpg/revision/latest/scale-to-width-down/281?cb=20201015175227&path-prefix=ru"
+      }
+    ]
+  },
+  {
+    "rarity": 5,
+    "name": "Сёгун Райдэн",
+    "element": "Электро",
+    "weapon": "Копьё",
+    "sex": "Женский",
+    "area": "Инадзума",
+    "images": [
+      {
+        "link": "https://static.wikia.nocookie.net/genshin-impact/images/4/45/%D0%9F%D0%B5%D1%80%D1%81%D0%BE%D0%BD%D0%B0%D0%B6_%D0%A1%D1%91%D0%B3%D1%83%D0%BD_%D0%A0%D0%B0%D0%B9%D0%B4%D1%8D%D0%BD_%D0%9A%D0%B0%D1%80%D1%82%D0%BE%D1%87%D0%BA%D0%B0.jpg/revision/latest/scale-to-width-down/281?cb=20210722144522&path-prefix=ru"
       }
     ]
   },
