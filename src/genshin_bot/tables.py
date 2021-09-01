@@ -73,8 +73,7 @@ class BotUser(Base, DjangoLikeModel):
     id = Column(Integer, primary_key=True)
     username = Column(String(32), nullable=False)
 
-    # todo придумать название получше может быть
-    characters_in_possession = relationship(
+    dropped_characters = relationship(
         "Character",
         secondary=user_and_character_association_table,
         backref="owners",

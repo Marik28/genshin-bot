@@ -44,8 +44,8 @@ class BotUsersService:
         return created, user
 
     def add_character_to_inventory(self, bot_user: tables.BotUser, character: tables.Character):
-        logger.debug(bot_user.characters_in_possession)
-        bot_user.characters_in_possession.append(character)
+        logger.debug(bot_user.dropped_characters)
+        bot_user.dropped_characters.append(character)
         self.session.add(bot_user)
         self.session.commit()
 
