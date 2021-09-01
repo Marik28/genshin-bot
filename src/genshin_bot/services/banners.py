@@ -12,6 +12,7 @@ class BannersService:
     def get_banner_by_name(self, banner_name: str) -> Optional[tables.Banner]:
         banner = (
             self.session.query(tables.Banner)
+                .join(tables.Banner.characters)
                 .filter(tables.Banner.name == banner_name)
                 .first()
         )
@@ -20,6 +21,7 @@ class BannersService:
     def get_list(self) -> list[tables.Banner]:
         banners = (
             self.session.query(tables.Banner)
+                .join(tables.Banner.characters)
                 .all()
         )
         return banners

@@ -63,14 +63,15 @@ class Banner(Base, DjangoLikeModel):
 
 user_and_character_association_table = Table(
     "user_and_character_association", Base.metadata,
-    Column('user_id', ForeignKey('users.id'), primary_key=True),
+    Column('botuser_id', ForeignKey('bot_users.id'), primary_key=True),
     Column('character_id', ForeignKey('characters.id'), primary_key=True),
 )
 
 
-class User(Base, DjangoLikeModel):
-    __tablename__ = "users"
+class BotUser(Base, DjangoLikeModel):
+    __tablename__ = "bot_users"
     id = Column(Integer, primary_key=True)
+    username = Column(String(32), nullable=False)
 
     # todo придумать название получше может быть
     characters_in_possession = relationship(

@@ -1,9 +1,10 @@
 import random
 
-from discord import User, Embed
+from discord import Embed, Member
 
 from .base import EmbedService
-from ..models import Element, Rarity, Character
+from .. import tables
+from ..models import Element, Rarity
 
 
 class CharacterEmbedService(EmbedService):
@@ -23,7 +24,7 @@ class CharacterEmbedService(EmbedService):
 
     default_image = "https://static.wikia.nocookie.net/gensin-impact/images/1/1b/Character_Paimon_Portrait.png/revision/latest?cb=20201205191049"
 
-    def __init__(self, user: User, character: Character, banner_name: str):
+    def __init__(self, user: Member, character: tables.Character, banner_name: str):
         self.user = user
         self.banner = banner_name
         self.character = character
@@ -42,8 +43,8 @@ class CharacterEmbedService(EmbedService):
         return self.embed
 
     def generate_rating(self) -> str:
-        """Отрисовывает звездочки по 5-звездночной шкале"""
-        rating = "★" * self.character.rarity.value
+        """Отрисовывает звездочки по 5-звездочной шкале"""
+        rating = "★" * self.character.rarity
         return f"{rating:☆<5}"
 
     def get_rarity_color(self) -> int:
