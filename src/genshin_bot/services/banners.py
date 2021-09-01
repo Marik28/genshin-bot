@@ -5,7 +5,7 @@ import sqlalchemy.orm
 from .. import tables
 
 
-class BannerService:
+class BannersService:
     def __init__(self, session: sqlalchemy.orm.Session):
         self.session = session
 
