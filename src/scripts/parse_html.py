@@ -24,7 +24,7 @@ def replace_spaces(character_name: str) -> str:
 
 
 def write_json(obj, file_name: str):
-    with open(json_dir / file_name, "w") as file:
+    with open(json_dir / file_name, "w", encoding="utf-8") as file:
         json.dump(obj, file, ensure_ascii=False, indent=2)
 
 

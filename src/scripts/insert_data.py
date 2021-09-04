@@ -20,7 +20,7 @@ if not json_dir.exists():
 
 
 def insert_data(filename, session: sqlalchemy.orm.Session):
-    with open(json_dir / filename) as f:
+    with open(json_dir / filename, encoding="utf-8") as f:
         character_obj_list = json.load(f)
     characters: list[models.Character] = [models.Character.parse_obj(character_obj) for character_obj in
                                           character_obj_list]
