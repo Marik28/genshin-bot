@@ -8,6 +8,7 @@ from sqlalchemy import (
 
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
+from sqlalchemy_utils import generic_repr
 
 Base = declarative_base()
 
@@ -24,6 +25,7 @@ banner_and_character_association_table = Table(
 )
 
 
+@generic_repr("name")
 class Character(Base, DjangoLikeModel):
     __tablename__ = "characters"
 
@@ -36,6 +38,7 @@ class Character(Base, DjangoLikeModel):
     area = Column(String(20), nullable=False)
 
 
+@generic_repr
 class CharacterImage(Base, DjangoLikeModel):
     __tablename__ = "character_images"
 
@@ -46,6 +49,7 @@ class CharacterImage(Base, DjangoLikeModel):
     character = relationship(Character, backref="images")
 
 
+@generic_repr
 class Banner(Base, DjangoLikeModel):
     __tablename__ = "banners"
     id = Column(Integer, primary_key=True, autoincrement=True)
