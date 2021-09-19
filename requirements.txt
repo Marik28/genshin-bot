@@ -2,7 +2,14 @@ discord.py
 discord-py-slash-command
 pydantic
 redis
+alembic
+flask
+flask-admin
+Flask-BasicAuth
+werkzeug
+gunicorn
 sqlalchemy
+sqlalchemy_utils
 pytest
 loguru
 bs4

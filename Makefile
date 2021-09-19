@@ -30,3 +30,6 @@ dump:
 restore:
 	sqlite3 db.sqlite3 < $(file)
 	echo "БД восстановлена из дампа"
+
+admin-run-dev:
+	cd src; python -m admin.main
