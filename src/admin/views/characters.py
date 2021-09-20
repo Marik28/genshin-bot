@@ -6,7 +6,7 @@ from ..services.choices import make_choices
 
 class CharactersView(BaseModelView):
     inline_models = [CharacterImage]
-    column_details_list = ["name", "rarity", "element", "weapon", "sex", "Area", "banners"]
+    column_details_list = ["name", "rarity", "element", "weapon", "sex", "area", "banners"]
     form_choices = {
         "rarity": make_choices(Rarity),
         "element": make_choices(Element),
