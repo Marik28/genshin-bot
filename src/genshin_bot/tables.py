@@ -38,7 +38,7 @@ class Character(Base, DjangoLikeModel):
     area = Column(String(20), nullable=False)
 
 
-@generic_repr
+@generic_repr("character", "link")
 class CharacterImage(Base, DjangoLikeModel):
     __tablename__ = "character_images"
 
@@ -49,7 +49,7 @@ class CharacterImage(Base, DjangoLikeModel):
     character = relationship(Character, backref="images")
 
 
-@generic_repr
+@generic_repr("name")
 class Banner(Base, DjangoLikeModel):
     __tablename__ = "banners"
     id = Column(Integer, primary_key=True, autoincrement=True)
