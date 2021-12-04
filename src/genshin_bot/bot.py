@@ -1,4 +1,4 @@
-from discord import User
+from discord import User, Message, TextChannel
 from discord.ext import commands
 from discord.ext.commands import Context
 from discord_slash import SlashCommand, SlashContext
@@ -12,12 +12,15 @@ from .embed.commands import CommandsInfoEmbedService
 from .embed.wishes import WishesInfoEmbedService
 from .models.banners import BannerList
 from .services.character_roller import BaseCharacterWish
+from .services.rhymes import get_rhymes
 from .services.wishes import WishesService
 from .settings import settings
 
 bot = commands.Bot(command_prefix=settings.command_prefix)
 slash = SlashCommand(bot, sync_commands=True)
 logger.add(settings.base_dir / "logs.log", level="INFO", rotation="2 MB")
+
+bot.rhymes_on = True
 
 
 @bot.event
@@ -33,6 +36,39 @@ async def on_disconnect():
 @bot.event
 async def on_command_error(ctx: Context, error):
     logger.error(f"In {ctx.guild}/{ctx.channel} (message by {ctx.message.author}): {error}.")
+
+
+@bot.event
+async def on_message(message: Message):
+    if message.author == bot.user or not bot.rhymes_on:
+        return
+    channel: TextChannel = message.channel
+    await channel.send(get_rhymes(message.content))
+
+
+@slash.slash(
+    name="rhymes",
+    description="Врубить или вырубить рифмы-хуифмы",
+    options=[
+        create_option(
+            name="option",
+            description="on или off",
+            option_type=3,
+            required=True,
+            choices=["on", "off"]
+        ),
+    ],
+)
+async def manage_rhymes(ctx: SlashContext, option: str):
+    variants = {
+        "on": True,
+        "off": False,
+    }
+
+    rhymes_on = variants.get(option.lower(), bot.rhymes_on)
+    message = f"Рифмы {'включены' if rhymes_on else 'отключены'} "
+    bot.rhymes_on = rhymes_on
+    await ctx.send(message)
 
 
 @slash.slash(
