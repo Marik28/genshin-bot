@@ -43,7 +43,10 @@ async def on_message(message: Message):
     if message.author == bot.user or not bot.rhymes_on:
         return
     channel: TextChannel = message.channel
-    await channel.send(get_rhymes(message.content))
+    rhymed_text = get_rhymes(message.content)
+    if rhymed_text is None:
+        return
+    await channel.send(rhymed_text)
 
 
 @slash.slash(

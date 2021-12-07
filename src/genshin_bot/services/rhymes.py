@@ -1,4 +1,5 @@
 import re
+from typing import Optional
 
 from pymorphy2 import MorphAnalyzer
 from pymorphy2.analyzer import Parse
@@ -91,9 +92,13 @@ def split_words(text: str) -> list[str]:
     return word_boundary.split(text)
 
 
-def get_rhymes(text: str) -> str:
-    words = split_words(text.lower())
-    return "".join([get_rhyme(word) for word in words])
+def get_rhymes(text: str) -> Optional[str]:
+    input_text = text.lower()
+    words = split_words(input_text)
+    rhymed_text = "".join([get_rhyme(word) for word in words])
+    if rhymed_text == input_text:
+        return None
+    return rhymed_text
 
 
 __all__ = ['get_rhymes']
