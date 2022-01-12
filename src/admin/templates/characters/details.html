@@ -1,0 +1,27 @@
+{% extends 'admin/model/details.html' %}
+
+{% macro render_character_image(model, column) %}
+    {% if model.images %}
+        {% for image in model.images  %}
+            <a href="{{ image.link }}" target="_blank">
+                <img src="{{ image.link }}" alt="Изображение персонажа {{ model.name }}" >
+            </a>
+        {% endfor %}
+    {% else %}
+        Нет картинок
+    {% endif %}
+{% endmacro %}
+
+{% macro render_character_banner(model, column) %}
+    {% if model.banners %}
+        {% for banner in model.banners %}
+            <a href="{{ get_url('banner.details_view', id=banner.id) }}">{{ banner.name }}</a>
+        {% endfor %}
+    {% else %}
+        Нет баннеров
+    {% endif %}
+{% endmacro %}
+
+{% block title %}
+    {{ model.name }}
+{% endblock %}
