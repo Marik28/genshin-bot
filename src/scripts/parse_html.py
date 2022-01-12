@@ -4,7 +4,7 @@ import json
 import requests
 from bs4 import BeautifulSoup
 
-from ..settings import settings
+from genshin_bot.settings import settings
 
 parser = argparse.ArgumentParser()
 parser.add_argument("filename", help="Файл с html, который необходимо распарсить в json")

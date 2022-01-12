@@ -3,9 +3,9 @@ import json
 
 from sqlalchemy.exc import IntegrityError
 
-from .. import tables, models
-from ..database import Session
-from ..settings import settings
+from genshin_bot import tables, models
+from genshin_bot.database import Session
+from genshin_bot.settings import settings
 
 parser = argparse.ArgumentParser()
 parser.add_argument("file", help="Имя json файла со списком персонажей")
