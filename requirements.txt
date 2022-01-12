@@ -15,3 +15,4 @@ loguru
 bs4
 lxml
 pymorphy2
+typer
