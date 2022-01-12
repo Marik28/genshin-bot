@@ -1,0 +1,11 @@
+{% extends 'admin/model/details.html' %}
+
+{% macro render_banner_characters(model, column) %}
+    {% for character in model.characters %}
+        <p class="my-0">
+            <a href="{{ get_url('character.details_view', id=character.id) }}">
+                {{ character.name }}
+            </a>
+        </p>
+    {% endfor %}
+{% endmacro %}

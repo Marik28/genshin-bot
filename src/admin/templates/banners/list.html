@@ -1,0 +1,6 @@
+{% extends 'admin/model/list.html' %}
+
+
+{% macro render_banner_name(model, column) %}
+    <a href="{{ get_url('.details_view', id=model.id) }}">{{ model.name }}</a>
+{% endmacro %}
