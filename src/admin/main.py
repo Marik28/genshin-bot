@@ -16,4 +16,5 @@ with Session() as session:
         app.run(
             host=settings.admin_app_host,
             port=settings.admin_app_port,
+            debug=settings.debug,
         )
