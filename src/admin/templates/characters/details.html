@@ -4,7 +4,11 @@
     {% if model.images %}
         {% for image in model.images  %}
             <a href="{{ image.link }}" target="_blank">
-                <img src="{{ image.link }}" alt="Изображение персонажа {{ model.name }}" >
+                <img
+                        class="img-fluid"
+                        src="{{ image.link }}"
+                        alt="Изображение персонажа {{ model.name }}"
+                >
             </a>
         {% endfor %}
     {% else %}
