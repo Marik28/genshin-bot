@@ -11,6 +11,7 @@ class Settings(BaseSettings):
     redis_port: int = 6379
     redis_db: int = 1
 
+    debug: bool = False
     flask_secret_key: str
     admin_app_host: str = 'localhost'
     admin_app_port: int = 5001
