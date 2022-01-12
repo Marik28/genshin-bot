@@ -1,23 +1,33 @@
-from time import time
-
 import requests
+import typer
 
+from genshin_bot.database import Session
 from genshin_bot.settings import settings
+from scripts.insert_data import insert_data
+from scripts.parse_html import parse_characters
 
-html_dir = settings.base_dir / "data" / "html"
-print(html_dir)
-
-characters_url = "https://genshin-impact.fandom.com/ru/wiki/%D0%9F%D0%B5%D1%80%D1%81%D0%BE%D0%BD%D0%B0%D0%B6%D0%B8"
+app = typer.Typer()
 
 
-def download_page_and_save_html(url: str) -> None:
+def download_page_content(url: str) -> bytes:
     response = requests.get(url)
-    html = response.content
-    filename = f"genshin-{int(time())}.html"
-    with open(html_dir.absolute() / filename, "wb") as file:
-        file.write(html)
-    print(f"Скачан файл {filename}")
+    return response.content
+
+
+@app.command(help="Скачивает инфу о персах, парсит её, и добавляет в БД")
+def main(
+        characters_url: str = typer.Option(
+            settings.characters_url,
+            help="URL статьи со списком персонажей на вики по геншину",
+        ),
+):
+    typer.echo("Cкачивается страница с персонажами ...")
+    page_content = download_page_content(characters_url)
+    typer.echo("Скачана")
+    characters = parse_characters(page_content)
+    with Session() as session:
+        insert_data(session, characters)
 
 
 if __name__ == '__main__':
-    download_page_and_save_html(characters_url)
+    app()

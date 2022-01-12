@@ -1,18 +1,26 @@
-import argparse
-import json
+import random
+import time
+from typing import (
+    Union,
+    Optional,
+)
+from urllib.parse import (
+    urlparse,
+    parse_qs,
+    urlencode,
+)
 
 import requests
+import typer
 from bs4 import BeautifulSoup
+from bs4.element import PageElement
 
+from genshin_bot.models.characters import (
+    Character,
+    CharacterImage,
+    Rarity,
+)
 from genshin_bot.settings import settings
-
-parser = argparse.ArgumentParser()
-parser.add_argument("filename", help="Файл с html, который необходимо распарсить в json")
-
-html_dir = settings.base_dir / "data" / "html"
-json_dir = settings.base_dir / "data" / "json"
-
-GENSHIN_WIKI_BASE_URL = 'https://genshin-impact.fandom.com'
 
 
 def replace_spaces(character_name: str) -> str:
@@ -22,58 +30,68 @@ def replace_spaces(character_name: str) -> str:
     return character_name
 
 
-def write_json(obj, file_name: str):
-    with open(json_dir / file_name, "w") as file:
-        json.dump(obj, file, ensure_ascii=False, indent=2)
-
-
 def get_character_image_link(character_url: str) -> str:
-    r = requests.get(f"{GENSHIN_WIKI_BASE_URL}{character_url}")
+    r = requests.get(f"{settings.genshin_wiki_base_url}{character_url}")
     soup = BeautifulSoup(r.content, "lxml")
     image = soup.select_one("figure.pi-item.pi-image img")
-    return image.attrs["src"]
+    image_url = urlparse(image.attrs["src"])
+    query = parse_qs(image_url.query)
+    query.pop("cb", None)
+    image_url = image_url._replace(query=urlencode(query, doseq=True)).geturl()
+    print("url", image_url)
+    return image_url
 
 
-def parse_html_to_json(html_filename: str):
-    with open(html_dir / html_filename, "r") as file:
-        content = file.read()
-    soup = BeautifulSoup(content, "lxml")
-    tables = soup.select("table.article-table.sortable")
-    characters_list_table: BeautifulSoup = tables[0]
-    characters_list = []
-    for row in characters_list_table.find_all("tr")[1:]:
-        columns = row.find_all("td")
-        stars = int(columns[2].select_one("p img").attrs["alt"].split(" ")[0])
-        name = replace_spaces(columns[1].text)
-        character_link = columns[1].find("a").attrs["href"]
-        image_link = get_character_image_link(character_link)
-        if name == "Путешественник":
-            continue
-        gods_eye = columns[3].text.strip()
-        weapon = columns[4].text.strip()
-        sex = columns[5].text.strip()
+def parse_row(row: PageElement) -> Optional[Character]:
+    """
+    :return: Parsed Character or None if character is a traveler or does not have area
+    """
+    columns = row.find_all("td")
+    stars = Rarity(
+        int(
+            columns[2]
+                .select_one("p img")
+                .attrs["alt"]
+                .split(" ")[0]
+        )
+    )
+    name = replace_spaces(columns[1].text)
+    character_link = columns[1].find("a").attrs["href"]
+    image_link = get_character_image_link(character_link)
+    if name == "Путешественник":
+        return None
+    gods_eye = columns[3].text.strip()
+    weapon = columns[4].text.strip()
+    sex = columns[5].text.strip()
+    try:
         area = columns[6].find("a").text.strip()
-        character = {
-            "rarity": stars,
-            "name": name,
-            "element": gods_eye,
-            "weapon": weapon,
-            "sex": sex,
-            "area": area,
-            "images": [
-                {
-                    "link": image_link,
-                }
-            ]
-        }
-        characters_list.append(character)
-        print(stars, name, gods_eye, weapon, sex, area)
-    json_file_name = html_filename.replace(".html", ".json")
-    write_json(characters_list, json_file_name)
-    print(f"Сохранено в файле {json_file_name}")
+    except AttributeError:
+        return None
+    return Character(
+        rarity=stars,
+        name=name,
+        element=gods_eye,
+        weapon=weapon,
+        sex=sex,
+        area=area,
+        images=[CharacterImage(link=image_link)]
+    )
 
 
-if __name__ == '__main__':
-    args = parser.parse_args()
-    filename = args.filename
-    parse_html_to_json(filename)
+def parse_characters(page_content: Union[bytes, str]) -> list[Character]:
+    soup = BeautifulSoup(page_content, "lxml")
+    tables = soup.select("table.article-table.sortable")
+    characters_list_table = tables[0]
+    parsed_characters = []
+    rows = characters_list_table.find_all("tr")[1:]
+    with typer.progressbar(rows, label="Парсинг персонажей", length=len(rows)) as progress:
+        for row in progress:
+            character = parse_row(row)
+            if character is not None:
+                parsed_characters.append(character)
+            sleep_secs = random.randrange(2, 5) / 10
+            time.sleep(sleep_secs)
+    return parsed_characters
+
+
+__all__ = ['parse_characters']
