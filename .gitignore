@@ -143,4 +143,4 @@ cython_debug/
 .idea/
 dump-*.sql
 data/html/
-**/alembic/versions/
+**/alembic/versions/*.py
