@@ -15,9 +15,10 @@ class Settings(BaseSettings):
     flask_secret_key: str
     admin_app_host: str = 'localhost'
     admin_app_port: int = 5001
+    admin_url: str = "/genshin/admin/"
+    flask_admin_swatch: str = "journal"
     basic_auth_username: str
     basic_auth_password: str
-    admin_url: str = "/genshin/admin/"
 
     characters_url: str = "https://genshin-impact.fandom.com" \
                           "/ru/wiki/%D0%9F%D0%B5%D1%80%D1%81%D0%BE%D0%BD%D0%B0%D0%B6%D0%B8"
